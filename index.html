@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="icon" href="images/homeicon.png"> 
+    <link rel="manifest" href="manifest.json">
+
+    <script>navigator.serviceWorker.register('sw.js')</script>
+    <style>
+        html {
+            margin: auto;
+        } 
+        * { 
+            background-color:  #F7E6DA;
+            font-family: Trebuchet MS;
+            text-align: center;
+            max-width: 400px; 
+        }
+        h1,h2,h3 {
+            color: #031A3D;
+            background-color: #A4826D;
+        }
+        span{
+            font-weight: lighter;
+            font-size: 15px;
+        }
+        li{
+            font-size: 20px;
+            line-height: 200%;
+        }
+        a,p {
+            color:black;
+            font-size: 20px;
+            line-height: 200%;
+        }
+        select {
+            color:black;
+            appearance: none;       
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Advanced Programming Techniques</span></h1>
+    
+    <a href=https://github.com/receptahaydin/RecepRepoFSMVU>Repository</a>
+
+    <h2>Class Works</h2>
+    <li><a href=https://receptahaydin.github.io/RecepFSMVU/ClassWork/CW0/Counting.html>CW0 - Browser Tools</a></li>
+    <li><a href=https://receptahaydin.github.io/RecepFSMVU/ClassWork/CW1/iban.html>CW1 - IBAN verification</a></li>
+    <li><a href=https://receptahaydin.github.io/RecepFSMVU/ClassWork/CW2/ObjectList.html>CW2 - Text to Objects</a></li>
+    <li><a href=https://receptahaydin.github.io/RecepFSMVU/ClassWork/CW3/Inspector.html>CW3 - Object Inspector</a></li></li>
+    
+    <h2>Homeworks</h2>
+    <li><a href=https://receptahaydin.github.io/RecepFSMVU/HomeWork/HW1/chap4.html>HW1 - Array methods</a></li>
+    <br>
+    <span>Recep Taha AYDIN</span>
+    
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>
