@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" href="/305/images/icon192.png">
+  <title>Battery Status</title>
+
+  <style>
+    /* CSS comment */
+    body {
+      max-width: 440px;
+    }
+
+    #url {
+      width: 190px;
+    }
+
+    span,
+    #url {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HTML comment: Modify all items marked xxx -->
+
+  <h2 id=title title="Modify xxx"></h2>
+
+  <p title="Charging Status : ">
+    <span id=charge></span>
+
+  <p title="Battery level">
+    <span id=level></span>
+
+  <p title="Battery level">
+    <span id=time></span>
+
+  <p title="Online">
+    <h2>
+    Online Status </h2> <span id=connection>?</span>   
+
+  <p title="Keyboard">
+    <h2>
+    Keyboard </h2> <span id=key>?</span>  
+    
+
+    <script>
+      "use strict";
+      // JavaScript comment
+      function init() {
+        navigator.getBattery().then(b => {
+          charge.innerText = (b.charging ? "Charging.." : "Discharging..")
+          b.onchargingchange = function () {
+            charge.innerText = (b.charging ? "Charging.." : "Discharging..")
+            console.log(b.charging)
+          }
+
+          level.innerText = b.level * 100 + "%"
+          b.onlevelchange = function () {
+            level.innerText = b.level * 100 + "%"
+            console.log(b.charging)
+          }
+          let hour = b.dischargingTime / 3600
+          time.innerText = hour.toFixed(2) + " hour remaining"
+        })
+
+        connection.innerText = navigator.onLine ? "connected -- online" : "disconnected"
+        ononline = event => connection.innerText = "connected"
+        onoffline = event => connection.innerText = "disconnected"
+        var keySet = new Set()
+        onkeydown = (event) => {
+          keySet.add(event.key)
+          key.innerText = ""
+          for (let x of keySet) {
+            key.innerText += " " + x
+          }
+        }
+        onkeyup = (event) => {
+          keySet.delete(event.key)
+          key.innerText = ""
+          for (let x of keySet) {
+            key.innerText += " " + x
+          }
+        }
+      }
+
+      init()
+      title.innerText = document.title;
+      sample.innerText = init + '\n';
+
+    </script>
+
+</body>
+
+</html>
