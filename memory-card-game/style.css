@@ -45,7 +45,7 @@ body {
   background-color: green;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
 
   .card__container {
     width: 350px;
