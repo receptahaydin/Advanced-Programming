@@ -1,16 +1,17 @@
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js").then(registration => {
-      console.log("sw registered!");
-      console.log(registration);
+    console.log("sw registered!");
+    console.log(registration);
   }).catch(err => {
-      console.log("sw failed!");
-      console.log(err);
+    console.log("sw failed!");
+    console.log(err);
   })
 }
 
 let firstSelectedEl, secondSelectedEl;
+let hint1, hint2;
 var point = 0;
-var adm = 1;
+var step = 1;
 
 let cards = [
   { id: 1, src: "./img/shape_1.png" },
@@ -43,7 +44,7 @@ const drawCards = () => {
 
   let cardItemsHtml = ``;
   dealingCards.forEach((item) => {
-    cardItemsHtml += `<img class="card animate__animated" 
+    cardItemsHtml += `<img class="card" 
         src="${item.src}"
         data-id="${item.id}"
         onclick="selectCard(this)"/>`;
@@ -56,7 +57,7 @@ drawCards();
 
 const selectCard = (el) => {
   if (!el.classList.contains("open")) {
-    el.classList.add("open", "animate__flipInY");
+    el.classList.add("open");
 
     if (firstSelectedEl) {
       secondSelectedEl = el;
@@ -73,41 +74,45 @@ const selectCard = (el) => {
 
 const checkSelectedCards = (checkFirstEl, checkSecondEl) => {
   if (checkFirstEl.dataset.id != checkSecondEl.dataset.id) {
-    checkFirstEl.classList.remove("animate__flipInY");
-    checkSecondEl.classList.remove("animate__flipInY");
 
-    checkFirstEl.classList.add("incorrect", "animate__shakeX");
-    checkSecondEl.classList.add("incorrect", "animate__shakeX");
+    checkFirstEl.classList.add("incorrect");
+    checkSecondEl.classList.add("incorrect");
+
     setTimeout(() => {
-      checkFirstEl.classList.add("animate__flipOutY");
-      checkSecondEl.classList.add("animate__flipOutY");
+      checkFirstEl.classList.remove(
+        "open",
+        "incorrect",
+      );
+      checkSecondEl.classList.remove(
+        "open",
+        "incorrect",
+      );
+    }, 500);
 
-      setTimeout(() => {
-        checkFirstEl.classList.remove(
-          "open",
-          "incorrect",
-          "animate__shakeX",
-          "animate__flipOutY"
-        );
-        checkSecondEl.classList.remove(
-          "open",
-          "incorrect",
-          "animate__shakeX",
-          "animate__flipOutY"
-        );
-      }, 500);
-    }, 1000);
     point = point - 10
     document.getElementById("pnt").innerHTML = "Puan: " + (point);
-    document.getElementById("adm").innerHTML = "Adım Sayısı: " + (adm++);
+    document.getElementById("step").innerHTML = "Adım Sayısı: " + (step++);
   } else {
-    checkFirstEl.classList.remove("animate__flipInY");
-    checkSecondEl.classList.remove("animate__flipInY");
-
-    checkFirstEl.classList.add("correct", "animate__bounceIn");
-    checkSecondEl.classList.add("correct", "animate__bounceIn");
+    checkFirstEl.classList.add("correct");
+    checkSecondEl.classList.add("correct");
     point = point + 20
     document.getElementById("pnt").innerHTML = "Puan: " + (point);
-    document.getElementById("adm").innerHTML = "Adım Sayısı: " + (adm++);
+    document.getElementById("step").innerHTML = "Adım Sayısı: " + (step++);
   }
 };
+
+const giveHint = () => {
+  const closedCards = document.querySelectorAll('.card:not(.open)');
+  if (closedCards.length >= 2) {
+    hint1 = closedCards[0];
+    for (let i = 1; i <= 15; i++) {
+      hint2 = closedCards[i];
+      if (hint1.dataset.id == closedCards[i].dataset.id) {
+        hint1.classList.add("hint");
+        hint2.classList.add("hint");
+        break;
+      }
+    }
+  }
+};
+

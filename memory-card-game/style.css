@@ -45,6 +45,10 @@ body {
   background-color: green;
 }
 
+.hint {
+  background-color: pink;
+}
+
 @media screen and (max-width: 450px) {
 
   .card__container {
